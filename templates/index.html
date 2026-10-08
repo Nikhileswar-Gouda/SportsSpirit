@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportSprint | Sports Gear Store</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="topbar">
+        <div class="container nav">
+            <div class="brand">
+                <span class="brand-mark">S</span>
+                <span>SportSprint</span>
+            </div>
+            <nav>
+                <a href="#products">Products</a>
+                <a href="#recommendations">Recommendations</a>
+                <a href="#offers">Offers</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <button class="primary-btn">Order Now</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <span class="eyebrow">Performance Starts Here</span>
+                    <h1>Gear up for every match with premium sports essentials.</h1>
+                    <p>
+                        Shop the best sports equipment for cricket, football, tennis, badminton, boxing,
+                        swimming, and fitness. Our AI assistant helps you pick the right gear for your sport.
+                    </p>
+                    <div class="hero-actions">
+                        <button class="primary-btn">Shop Products</button>
+                        <button class="secondary-btn" id="quickSportBtn">Ask for a Sport</button>
+                    </div>
+                    <div class="stat-row">
+                        <div>
+                            <strong>25k+</strong>
+                            <span>Orders shipped</span>
+                        </div>
+                        <div>
+                            <strong>4.9/5</strong>
+                            <span>Customer rating</span>
+                        </div>
+                        <div>
+                            <strong>48h</strong>
+                            <span>Fast delivery</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="floating-card card-one">
+                        <span>Top Item</span>
+                        <strong>Cricket Bat</strong>
+                    </div>
+                    <div class="display-card">
+                        <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=900&q=80" alt="Sport equipment">
+                    </div>
+                    <div class="floating-card card-two">
+                        <span>Best Offer</span>
+                        <strong>30% OFF</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="recommendations" class="sports-recommendations">
+            <div class="container">
+                <div class="section-heading center">
+                    <span class="eyebrow">Smart Recommendations</span>
+                    <h2>Tell us your sport and we’ll suggest the required gear</h2>
+                </div>
+                <div class="sport-tags">
+                    <button class="sport-tag active" data-sport="cricket">Cricket</button>
+                    <button class="sport-tag" data-sport="football">Football</button>
+                    <button class="sport-tag" data-sport="tennis">Tennis</button>
+                    <button class="sport-tag" data-sport="badminton">Badminton</button>
+                    <button class="sport-tag" data-sport="boxing">Boxing</button>
+                    <button class="sport-tag" data-sport="gym">Gym</button>
+                    <button class="sport-tag" data-sport="swimming">Swimming</button>
+                </div>
+                <div class="recommendation-grid" id="recommendationGrid"></div>
+            </div>
+        </section>
+
+        <section id="products" class="products container">
+            <div class="section-heading">
+                <span class="eyebrow">All Products</span>
+                <h2>Shop sports gear for every athlete</h2>
+            </div>
+
+            <div class="product-grid">
+                {% for product in products %}
+                <article class="product-card">
+                    <div class="product-image-wrap">
+                        <img src="{{ product.image }}" alt="{{ product.name }}">
+                        <span class="badge">{{ product.badge }}</span>
+                    </div>
+                    <div class="product-content">
+                        <div class="meta-row">
+                            <span class="category">{{ product.category }}</span>
+                            <span class="rating">★ {{ product.rating }} ({{ product.reviews }})</span>
+                        </div>
+                        <h3>{{ product.name }}</h3>
+                        <p>{{ product.description }}</p>
+                        <div class="buy-row">
+                            <strong>₹{{ product.price }}</strong>
+                            <button>Order Now</button>
+                        </div>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section id="offers" class="features">
+            <div class="container">
+                <div class="section-heading center">
+                    <span class="eyebrow">Why athletes trust us</span>
+                    <h2>Built for performance, comfort, and durability</h2>
+                </div>
+                <div class="feature-grid">
+                    <div class="feature-box">
+                        <div class="icon">🏅</div>
+                        <h3>Pro-Level Quality</h3>
+                        <p>Every products is crafted for serious training, match-day performance, and long-term use.</p>
+                    </div>
+                    <div class="feature-box">
+                        <div class="icon">🤖</div>
+                        <h3>AI Sport Guide</h3>
+                        <p>Type any sport and get the essential items needed for playing that sport and ordering them.</p>
+                    </div>
+                    <div class="feature-box">
+                        <div class="icon">🚚</div>
+                        <h3>Fast Delivery</h3>
+                        <p>Quick dispatch, secure shopping, and easy returns for athletes who need equipment fast.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact" class="footer">
+        <div class="container footer-inner">
+            <div>
+                <h3>SportSprint</h3>
+                <p>Premium sports products for active lifestyles, training sessions, and match-day confidence.</p>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <p>support@sportsprint.in</p>
+                <p>+91 98765 43210</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="chatbot">
+        <button class="chat-toggle" id="chatToggle">💬</button>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <h4>Sport AI Assistant</h4>
+                <button id="closeChat">×</button>
+            </div>
+            <div class="chat-body" id="chatBody">
+                <div class="message bot">Hi! Type a sport like cricket, football, tennis, or badminton and I’ll show the gear you need to order.</div>
+            </div>
+            <div class="chat-input-wrap">
+                <input id="chatInput" type="text" placeholder="Type a sport name...">
+                <button id="sendChat">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
